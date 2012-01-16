@@ -53,7 +53,7 @@ function centerMap(point) {
 }
 
 function appendIt(){
-	$("#map").append('#mapinfo');
+	$("#map").append("<section id='mapinfo'><section class='info-box'><h3>Where?</h3><p>31st January<br>18:30<br>The Slug and <wbr> Lettuce<br>Bournemouth<br>BH2 6DT</p></section></section>");
 	$("#mapinfo").hide();
 	$('#mapinfo').fadeIn('slow');
 }
@@ -78,7 +78,7 @@ $(window).resize(function() {
 function minimalView() {
 	if ($(window).width() < 400){
 		if ($("#outermap").html() == ""){
-			$("#outermap").append("#mapinfo");
+			$("#outermap").append("<h3>Where?</h3><p>1st November<br>19:30<br>The Slug and Lettuce<br>Bournemouth<br>BH2 6DT</p>");
 		}
 		centerMap(new google.maps.LatLng(50.720903, -1.879971));
 	} else {
