@@ -2,6 +2,7 @@ $(document).ready(function() {
 	loadMap();
 	$("#top img").hide();
 	minimalView();
+	$('#mapinfo').hide();
 });
 
 function loadMap(){
@@ -53,7 +54,10 @@ function centerMap(point) {
 }
 
 function appendIt(){
-	$("#map").append("<section id='mapinfo'><section class='info-box'><h3>Where?</h3><p>31st January<br>18:30<br>The Slug and <wbr> Lettuce<br>Bournemouth<br>BH2 6DT</p></section></section>");
+	/*$("#map").append("<section id='mapinfo'><section class='info-box'><h3>Where?</h3><p>31st January<br>18:30<br>The Slug and <wbr> Lettuce<br>Bournemouth<br>BH2 6DT</p></section></section>");
+	*/
+	var tempMap = $('#mapinfo');
+	$("#map").append(tempMap);
 	$("#mapinfo").hide();
 	$('#mapinfo').fadeIn('slow');
 }
