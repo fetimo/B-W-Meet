@@ -56,8 +56,8 @@ function centerMap(point) {
 function appendIt(){
 	/*$("#map").append("<section id='mapinfo'><section class='info-box'><h3>Where?</h3><p>31st January<br>18:30<br>The Slug and <wbr> Lettuce<br>Bournemouth<br>BH2 6DT</p></section></section>");
 	*/
-	var tempMap = $('#mapinfo');
-	$("#map").append(tempMap);
+	var getMap = $('#mapinfo');
+	$("#map").append(getMap);
 	$("#mapinfo").hide();
 	$('#mapinfo').fadeIn('slow');
 }
