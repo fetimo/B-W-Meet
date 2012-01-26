@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">	
-	<meta name="description" content="B &amp; W Meet is a Bournemouth-based pub meet for digital creatives. Fit the bill&#63; Join Us.">
-	<title>B &amp; W Meet | A meet for like-minded digital creatives.</title>
-	<link href="styles.css" rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.ico">
-	<meta name="viewport" content="initial-scale=1.0" />
-</head>
-<body>
-	<section id="topcontainer">
-		<div id="top">
-			<img src="images/invertsm.png" alt="The inverted version of our logo">
-			<p>A place for creative minds.</p>
-		</div><!--ends top div-->
-	</section><!--Ends topcontainer-->
-	<div id="content">
+<?php require_once 'header.php'; ?>
 		<header>
 			<img src="images/logo.png" alt="The B &amp; W Meet Logo">
 			<section>
@@ -43,7 +26,7 @@
 			<a href="http://www.vealhost.com/"><img src="images/vealhost.gif" alt="Vealhost's logo, our lovely sponsor." class="sponsor"></a>
 		</section>
 		<footer>
-			<p>B &amp; W Meet is brought to you by <a href="http://fetimo.com">Tim Stone</a> and <a href="https://twitter.com/#!/seanmtracey">Sean Tracey</a>. <q>Stay hungry, stay foolish.</q></p>
+			<p>B &amp; W Meet is brought to you by <a href="http://fetimo.com">Tim Stone</a> and <a href="https://twitter.com/#!/seanmtracey">Sean Tracey</a>. Logo design by <a href="http://vivid-e.com/">Ole Dean</a>. <q>Stay hungry, stay foolish.</q></p>
 		</footer>
 	
 		<section id='mapinfo'>
@@ -54,21 +37,13 @@
 		</section>
 		
 	</div><!--Ends content div-->
-	
+	<section id='mapinfo'>
+		<section class='info-box'>
+			<h3>Where?</h3>
+			<p>31st January<br>18:30<br>The Slug and <wbr> Lettuce<br>Bournemouth<br>BH2 6DT</p>
+		</section>
+	</section>
+	<!--JavaScript Files-->	
 	<script src="lib/jquery.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script src="core.js"></script>
-	<!--Javascript Files-->
-	<script>
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-11418004-2']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-</body>
-</html>
+<?php require_once 'footer.php'; ?>
