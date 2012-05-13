@@ -43,6 +43,6 @@ function scrollCheck(){
 function setEventInfo(){
 	var source = $("#htmlTemplate").html(),
 		template = Handlebars.compile(source),
-		theInfo = {date: "3rd April", time: "18:30", place: "The Slug and Lettuce<br>Bournemouth<br>BH2 6HT"};
+		theInfo = {date: "5th June", time: "18:00", place: "The Slug and Lettuce<br>Bournemouth<br>BH2 6HT"};
 	$('.eventInfo').html(template(theInfo));
 }
