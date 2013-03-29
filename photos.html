@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,12 @@
 	<link href="styles.css" rel="stylesheet">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0">
+	<style>
+		img {
+		 	height: 137px;
+		 	overflow: hidden;
+		 }
+	</style>
 </head>
 <body>
 	<div id="content">
@@ -24,28 +29,7 @@
 		
 		<section class="photos">
 			<h2>Photos</h2>
-				<?php 
-				//unset($_SESSION['pictures']); //uncomment this for debugging
-				if (!isset($_SESSION['pictures'])) {
-					$request = simplexml_load_file('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ad28dea2b7d8e33ff6becb22475b4781&tags=bwmeet&per_page=24');
-					$pictures = Array();
-					foreach ($request->photos->photo as $photo) {
-						$info = simplexml_load_file('http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=ad28dea2b7d8e33ff6becb22475b4781&photo_id='.$photo[id]);
-						$square_url = simplexml_load_file('http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ad28dea2b7d8e33ff6becb22475b4781&photo_id='.$photo[id]);
-						array_push($pictures, '<a href="'.$square_url->sizes->size[7][url].'"><img src="'.$square_url->sizes->size[1][source].'" alt="'.$photo[description].'" title="'.$photo[title].'" class="flickr"></a>');
-					}
-					
-					$_SESSION['pictures'] = serialize($pictures);
-				}
-				
-				if (!isset($pictures)) {
-					$pictures = unserialize($_SESSION['pictures']);
-				}
-				
-				foreach ($pictures as $pic) {
-					echo $pic;
-				}
-			?>
+			<p class="loading">Loading hilarity&hellip;</p>
 		</section>
 		<footer>
 			<p>B &amp; W Meet is brought to you by <a href="http://fetimo.com">Tim Stone</a> and <a href="https://twitter.com/#!/seanmtracey">Sean Tracey</a>. <q>Stay hungry, stay foolish.</q></p>
@@ -53,6 +37,23 @@
 	</div><!--Ends content div-->
 	<script src="lib/jquery.js"></script>
 	<script src="core.js"></script>
+	<script>
+		var req = $.getJSON('http://api.flickr.com/services/feeds/groups_pool.gne?id=1993410@N21&format=json&jsoncallback=?', displayImages);
+		
+		function displayImages(data) {
+			var photos = "";
+			$.each(data.items, function(i, photo) {
+				photos += 
+					'<a href="' + photo.link + '"> \
+					<img title="' + photo.title + '" src="' + photo.media.m + '" \
+					alt="' + photo.title + '" class="flickr"> \
+					</a>';
+			});
+			
+			$('.loading').remove();
+			$('.photos').append(photos);
+		}
+	</script>
 	<script>
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-11418004-2']);

@@ -185,7 +185,7 @@ nav a {
 	height: 401px;
 	width: 400px;
 	background-color: rgba(255, 255, 255, .75);
-	z-index: 2000000;
+	z-index: 100;
 	margin: 0 0 0 600px;
 	border-left: solid rgba(0, 0, 0, .3) 1px;
 }

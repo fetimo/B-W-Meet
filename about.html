@@ -4,7 +4,7 @@
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">	
 	<meta name="description" content="B &amp; W Meet is a Bournemouth-based pub meet for digital creatives. Fit the bill&#63; Join Us.">
 	<title>About B &amp; W Meet | A meet for like-minded digital creatives.</title>
-	<link href="styles.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0" />
 </head>
@@ -13,7 +13,7 @@
 		<nav>
 		<div class="ribbonLeft"></div><div class="ribbonRight"></div>
 			<ul>
-				<li><a href="/">Home</a></li>
+				<li><a href="/">/</a></li>
 				<li><a href="about">About</a></li>
 				<li><a href="photos">Photos</a></li>
 				<li><a href="contact">Contact</a></li>
@@ -23,7 +23,7 @@
 		<h2>What is B &amp; W Meet?</h2>
 		
 		<section class="large-box img">
-			<img src="images/logo.png" alt="The B &amp; W Meet Logo">
+			<img src="img/logo.png" alt="The B &amp; W Meet Logo">
 			<p>B &amp; W Meet is an informal pub meet for Bournemouth-based digital creatives. It doesn't matter where you're from or how experienced you are as long as you're passionate about the web. We’ll always be free and open to all.</p>
 		</section>
 		
@@ -54,19 +54,12 @@
 		</footer>
 	</div><!--Ends content div-->
 
-	<script src="lib/jquery.js"></script>
-	<script src="core.js"></script>
-	<!--Javascript Files-->
+	<script src="js/core.js"></script>
 	<script>
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-11418004-2']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+    var _gaq=[['_setAccount','UA-11418004-2'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
 </body>
 </html>
