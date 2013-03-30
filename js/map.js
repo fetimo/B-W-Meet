@@ -24,7 +24,7 @@ var map = (function() {
 		);
 
 		var shadow = new google.maps.MarkerImage(
-			'img/marker-shadow.png',
+			'images/marker-shadow.png',
 			new google.maps.Size(117,50),
 			new google.maps.Point(0,0),
 			new google.maps.Point(45,50)
