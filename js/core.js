@@ -63,8 +63,8 @@ function setEventInfo(){
 	var source = document.getElementById("mapInfoTemplate").innerHTML,
 		template = Handlebars.compile(source),
 		theInfo = {
-			date: "1st November",
-			time: "17:30",
+			date: "14th May",
+			time: "18:00",
 			place: "The Slug and Lettuce<br>Bournemouth<br>BH2 6HT"
 		};
 	document.querySelector('.eventInfo').innerHTML = template(theInfo);
