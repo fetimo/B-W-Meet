@@ -71,7 +71,7 @@ function setEventInfo(){
 
 	var eventbriteLinks = document.querySelectorAll('a[href*="eventbrite"]');
 
-	for (var i = 0; i < eventbriteLinks.length; i++) {
-		eventbriteLinks[i].setAttribute('href', 'http://bwmeet8.eventbrite.co.uk/');
+	for (var i = 0, len = eventbriteLinks.length; i < len; i++) {
+		eventbriteLinks[i].setAttribute('href', 'http://bwmeet9.eventbrite.co.uk/');
 	}
 }
