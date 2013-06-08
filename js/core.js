@@ -63,15 +63,15 @@ function setEventInfo(){
 	var source = document.getElementById("mapInfoTemplate").innerHTML,
 		template = Handlebars.compile(source),
 		theInfo = {
-			date: "14th May",
+			date: "25th June",
 			time: "18:00",
 			place: "The Slug and Lettuce<br>Bournemouth<br>BH2 6HT"
 		};
-	document.querySelector('.eventInfo').innerHTML = template(theInfo);
+	document.getElementsByClassName('eventInfo')[0].innerHTML = template(theInfo);
 
 	var eventbriteLinks = document.querySelectorAll('a[href*="eventbrite"]');
 
 	for (var i = 0, len = eventbriteLinks.length; i < len; i++) {
-		eventbriteLinks[i].setAttribute('href', 'http://bwmeet9.eventbrite.co.uk/');
+		eventbriteLinks[i].setAttribute('href', 'http://bwmeet10.eventbrite.co.uk/');
 	}
 }
