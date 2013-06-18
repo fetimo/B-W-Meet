@@ -19,25 +19,42 @@ if (isModernBrowser()) {
 }
 
 function scrollCheck(){
+	
 	var nav = document.querySelector('nav');
+	if(document.getElementById('map') !== null){
+		var mapDiv = document.getElementById('map');
+	}
 
-	if (window.scrollY > 470 && window.innerWidth > 665) {
+	if (window.scrollY > 410 && window.innerWidth > 665) {
+		
 		nav.style.position = 'fixed';
 		nav.style.top = 0;
 		nav.style.left = 0;
 		nav.style.zIndex = 1000;
+		if(mapDiv){
+			mapDiv.style.marginTop = "60px";
+		}
 
 		if (document.querySelector('.ribbonLeft').style.display === 'block')  {
 			document.querySelector('.ribbonLeft').style.display = 'none';
 			document.querySelector('.ribbonRight').style.display = 'none';
 		}
-	} else if (window.scrollY < 440 && window.innerWidth > 665){
+
+	} else if (window.scrollY < 400 && window.innerWidth > 665){
+		
 		document.querySelector('nav').style.position = 'static';
+		
+		if(mapDiv){
+			mapDiv.style.marginTop = "0px";
+		}
+
 		if (document.querySelector('.ribbonLeft').style.display === 'none')  {
 			document.querySelector('.ribbonLeft').style.display = 'block';
 			document.querySelector('.ribbonRight').style.display = 'block';
 		}
+
     } else if (window.innerWidth < 400){
+		
 		nav.style.position = 'fixed';
 		nav.style.top = 0;
 		nav.style.left = 0;
@@ -45,7 +62,9 @@ function scrollCheck(){
 		nav.style.marginTop = 0;
 		document.querySelector('.ribbonLeft').style.display = 'none';
 		document.querySelector('.ribbonRight').style.display = 'none';
+    
     }
+
 }
 
 /* Handlerbars stuff below 
@@ -60,6 +79,7 @@ function scrollCheck(){
  */
 
 function setEventInfo(){
+
 	var source = document.getElementById("mapInfoTemplate").innerHTML,
 		template = Handlebars.compile(source),
 		theInfo = {
@@ -67,6 +87,7 @@ function setEventInfo(){
 			time: "18:00",
 			place: "The Slug and Lettuce<br>Bournemouth<br>BH2 6HT"
 		};
+
 	document.getElementsByClassName('eventInfo')[0].innerHTML = template(theInfo);
 
 	var eventbriteLinks = document.querySelectorAll('a[href*="eventbrite"]');
