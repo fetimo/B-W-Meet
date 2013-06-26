@@ -121,8 +121,7 @@ nav {
 }
 
 nav ul {
-	width: 580px;
-	position: relative;
+	width: 430px;
 	margin: 0 auto;
 }
 
@@ -509,7 +508,6 @@ footer a {
 	color: #fff;
 	background-color: #0064cd;
 	background-repeat: repeat-x;
-	background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
 	background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
 	background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
