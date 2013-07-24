@@ -136,6 +136,8 @@ var bwMeet = (function(){
 		checkToday();
 		menu();
 
+		setInterval(checkToday, 1000 * 60 * 60);
+
 	}
 
 	return{
