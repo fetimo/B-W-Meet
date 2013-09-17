@@ -73,39 +73,85 @@ var bwMeet = (function(){
 				}, delay * x);
 			
 			})(delay, x, from, to, length * frameRate);
-
 		}
-
-
-
 	}
 
 	function checkToday(time){
-
+		$.ajax({
+		    type: 'POST',
+		    dataType: 'jsonp',
+		    url: 'http://api.openweathermap.org/data/2.5/weather?q=Bournemouth,uk&callback=?',
+		    success: function(data) {
+		        console.log(data);
+		        var time = data.weather[0].id;
+		        
+		    },
+		    error : function(errorData) {
+				console.log('could not get weather data');
+		    }
+		});
+		
 		var timeDate = new Date(),
 			hour = timeDate.getHours(),
 			check;
 
-		if(hour < 5 || hour >= 21){
-			console.log("Nighttime");
+		if (hour < 5 || hour >= 21){
+			//console.log("Nighttime");
 			check = timeGrades.night;
 		} else if(hour >= 5 && hour <= 9){
-			console.log("Dawn");
+			//console.log("Dawn");
 			check = timeGrades.dawn;
 		} else if(hour > 9 && hour <= 18){
-			console.log("Day");
+			//console.log("Day");
 			check = timeGrades.day;
 		} else if(hour > 18  && hour < 21){
-			console.log("Dusk");
+			//console.log("Dusk");
 			check = timeGrades.dusk;
 		}
 
 		if(check !== currentGrade){
 			transitionGrade(currentGrade, check);
 			currentGrade = check;
-		}		
-
+		}
 	}
+	
+	var weather = (function() {
+		var get = function() {
+			$.ajax({
+			    type: 'POST',
+			    dataType: 'jsonp',
+			    url: 'http://api.openweathermap.org/data/2.5/weather?q=Bournemouth,uk&callback=?',
+			    success: function(data) {
+			        //console.log(typeof data.weather[0].id);
+			        /* wind = data.wind.deg & data.wind.speed */
+			        /* status id's found at http://openweathermap.org/wiki/API/Weather_Condition_Codes */
+			        var condition = data.weather[0].id;
+			        if (condition >= 801 && condition <= 804) {
+			        	//cloudy
+			        } else if ((condition >= 300 && condition <= 321) || (condition >= 500 && condition <= 522)) {
+			        	//drizzle/rain
+			        } else if (condition >= 200 && condition <= 232) {
+			        	//thunder
+			        } else {
+			        	//clear
+			        }
+			    },
+			    error : function(errorData) {
+					console.log('could not get weather data');
+			    }
+			});
+		};
+		
+		var set = function() {
+			console.log(arguments);
+		};
+		
+		return {
+			get: get,
+			set: set
+		};
+	})();
+	
 
 	function menu(){
 		nav = document.getElementsByTagName('nav')[0];
@@ -127,19 +173,17 @@ var bwMeet = (function(){
 
 				}, false);
 			})(z);
-
 		}
-
 	}
 
 	function init(){
 		checkToday();
 		menu();
-
 	}
 
-	return{
-		init : init
+	return {
+		init: init,
+		weather: weather
 	};
 
 })();
