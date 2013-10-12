@@ -34,7 +34,7 @@ var bwMeet = (function(){
 		}, 
 		currentGrade = timeGrades.day;
 
-	function getGrades(){
+	function getGrades() {
 		return timeGrades;
 	}
 
@@ -65,7 +65,7 @@ var bwMeet = (function(){
 					if(to.cssClass == "night"){
 						document.getElementById("darkness").style.opacity = 0 + (1 / 100) * whereAreWe;
 						document.getElementById("stars").style.opacity = 0 + (1 / 100) * whereAreWe;
-					} else if(from.cssClass){
+					} else if(from.cssClass == "night"){
 						document.getElementById("darkness").style.opacity = 1 - (1 / 100) * whereAreWe;
 						document.getElementById("stars").style.opacity = 1 - (1 / 100) * whereAreWe;
 					}
@@ -73,11 +73,7 @@ var bwMeet = (function(){
 				}, delay * x);
 			
 			})(delay, x, from, to, length * frameRate);
-
 		}
-
-
-
 	}
 
 	function checkToday(time){
@@ -86,27 +82,28 @@ var bwMeet = (function(){
 			hour = timeDate.getHours(),
 			check;
 
-		if(hour < 5 || hour >= 21){
-			console.log("Nighttime");
+		if (hour < 5 || hour >= 21) {
+			//console.log("Nighttime");
 			check = timeGrades.night;
-		} else if(hour >= 5 && hour <= 9){
-			console.log("Dawn");
+		} else if(hour >= 5 && hour <= 9) {
+			//console.log("Dawn");
 			check = timeGrades.dawn;
-		} else if(hour > 9 && hour <= 18){
-			console.log("Day");
+		} else if(hour > 9 && hour <= 18) {
+			//console.log("Day");
 			check = timeGrades.day;
-		} else if(hour > 18  && hour < 21){
-			console.log("Dusk");
+		} else if(hour > 18  && hour < 21) {
+			//console.log("Dusk");
 			check = timeGrades.dusk;
 		}
 
-		if(check !== currentGrade){
+		if (check !== currentGrade){
 			transitionGrade(currentGrade, check);
 			currentGrade = check;
-		}		
-
+		}
 	}
-
+	
+	var prod = 'ontouchend' in window ? 'touchend' : 'click';
+	
 	function menu(){
 		nav = document.getElementsByTagName('nav')[0];
 		menuOptions = nav.getElementsByTagName('li');
@@ -115,35 +112,28 @@ var bwMeet = (function(){
 		for(var z = 0; z < menuOptions.length; z += 1){
 
 			(function(z){
-				menuOptions[z].addEventListener('click', function(){
+				menuOptions[z].addEventListener(prod, function(){
 					// alert(z);
-					for(var za = 0; za < menuOptions.length; za += 1){
+					for (var za = 0, len = menuOptions.length; za < len; za += 1){
 						menuOptions[za].setAttribute('class', '');
 						articles[za].setAttribute('class', '');
 					}
 
 					menuOptions[z].setAttribute('class', 'active');
 					articles[z].setAttribute('class', 'active');
-
 				}, false);
 			})(z);
-
 		}
-
 	}
 
 	function init(){
 		checkToday();
 		menu();
-
-		setInterval(checkToday, 1000 * 60 * 60);
-
 	}
 
-	return{
+	return {
 		init : init
 	};
-
 })();
 
 (function(){
