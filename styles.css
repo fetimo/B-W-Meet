@@ -18,8 +18,8 @@ body{
 	height:auto;
 }
 
-.hidden{
-	opacity: 0;
+.hide{
+	display: none;	
 }
 
 main{
