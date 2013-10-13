@@ -79,9 +79,9 @@ main #poster #frame #content footer #info{
 main #poster #frame #content footer #info h1, main #poster #frame #content footer #hashtag a{
 	margin: 0;
 	padding: 0;
-	color: white;
 	font-size: 45px;
 	font-weight: 100;
+	color: rgba(0,0,0,.5);
 }
 
 main #poster #frame #content footer #hashtag{
@@ -92,7 +92,7 @@ main #poster #frame #content footer #hashtag{
 }
 
 main #poster #frame #content footer #hashtag a{
-	color: rgba(255, 255, 255, .5);
+	color: rgba(0, 0, 0, .5);
 }
 
 main #information{
