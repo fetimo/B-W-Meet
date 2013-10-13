@@ -1,4 +1,4 @@
-var bwMeet = (function(){
+var __bwMeet13 = (function(){
 
 	'use strict';
 
@@ -102,33 +102,11 @@ var bwMeet = (function(){
 		}
 	}
 	
-	var prod = 'ontouchend' in window ? 'touchend' : 'click';
 	
-	function menu(){
-		nav = document.getElementsByTagName('nav')[0];
-		menuOptions = nav.getElementsByTagName('li');
-		articles = document.getElementById('information').getElementsByTagName('article');
-
-		for(var z = 0; z < menuOptions.length; z += 1){
-
-			(function(z){
-				menuOptions[z].addEventListener(prod, function(){
-					// alert(z);
-					for (var za = 0, len = menuOptions.length; za < len; za += 1){
-						menuOptions[za].setAttribute('class', '');
-						articles[za].setAttribute('class', '');
-					}
-
-					menuOptions[z].setAttribute('class', 'active');
-					articles[z].setAttribute('class', 'active');
-				}, false);
-			})(z);
-		}
-	}
 
 	function init(){
 		checkToday();
-		menu();
+		// menu();
 	}
 
 	return {
@@ -137,5 +115,5 @@ var bwMeet = (function(){
 })();
 
 (function(){
-	bwMeet.init();
+	__bwMeet13.init();
 })();
