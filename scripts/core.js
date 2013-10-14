@@ -63,10 +63,23 @@ var __bwMeet13 = (function(){
 				if(spaceDown){
 					objects[xx].material.color.setHex(objects[xx].custom.color)
 				} else {
-					objects[xx].material.color.setHex(0x000000);
+					//objects[xx].material.color.setHex(0x000000);
 				}
 
 			}
+
+			if(objects[xx].material.color.r > 0){
+				objects[xx].material.color.r -= 0.1;
+			}
+
+			if(objects[xx].material.color.g > 0){
+				objects[xx].material.color.g -= 0.1;
+			}
+
+			if(objects[xx].material.color.b > 0){
+				objects[xx].material.color.b -= 0.1;
+			}
+			// objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z = Math.random() * 2;
 
 			xx += 1;
 
@@ -99,7 +112,8 @@ var __bwMeet13 = (function(){
 			nObj.material.color.setHex(0x000000);
 
 			nObj.material.needsUpdate = true;
-			nObj.custom.spin = {x : Math.random() / 500, y : Math.random() / 500, z : Math.random() / 500}
+			nObj.geometry.verticesNeedUpdate = true;
+			nObj.custom.spin = {x : Math.random() / 100, y : Math.random() / 100, z : Math.random() / 100}
 
 			objects.push(nObj);
 				
