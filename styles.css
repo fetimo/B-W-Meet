@@ -84,7 +84,8 @@ main #poster #frame #tint #haveYouThought{
 	background-color: rgba(255,255,255,.1);
 	padding: 25px 15px 10px;
 	border-radius: 5px;
-	margin-left: -125px
+	margin-left: -134px;
+	font-weight: 200;
 }
 
 

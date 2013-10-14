@@ -61,7 +61,8 @@ var __bwMeet13 = (function(){
 				objects[xx].rotation.z -= objects[xx].custom.spin.z;
 
 				if(spaceDown){
-					objects[xx].material.color.setHex(objects[xx].custom.color)
+					objects[xx].material.color.setHex(objects[xx].custom.color);
+					objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z = 2;
 				} else {
 					//objects[xx].material.color.setHex(0x000000);
 				}
@@ -78,6 +79,10 @@ var __bwMeet13 = (function(){
 
 			if(objects[xx].material.color.b > 0){
 				objects[xx].material.color.b -= 0.1;
+			}
+
+			if(objects[xx].scale.x > 1){
+				objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z -= 0.1;
 			}
 			// objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z = Math.random() * 2;
 
