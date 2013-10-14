@@ -16,6 +16,34 @@ var __bwMeet13 = (function(){
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame; 
 		window.requestAnimationFrame = requestAnimationFrame;
 
+	function handleAudio(data){
+
+		var buff = new Uint8Array(data.target.result);
+		var blob = new Blob([buff], {type: 'audio/mpeg'});
+
+		var aud = new Audio();
+		aud.src = URL.createObjectURL(blob);
+		aud.load();
+		document.body.appendChild(aud);
+
+		aud.addEventListener('canplaythrough', function(){
+			aud.play();
+			document.getElementById('tint').setAttribute('class', 'fadeOut');
+		}, true);
+
+
+	}
+
+	function loadFile(e){
+		var file = e.dataTransfer.files[0];
+
+		var reader = new FileReader();
+
+		reader.onload = handleAudio;
+
+		reader.readAsArrayBuffer(file);
+	}
+
 	function drawScene(){
 
 		var xx = 0;
@@ -23,27 +51,21 @@ var __bwMeet13 = (function(){
 		while(xx < objects.length){
 		
 			if(xx % 2 === 0){
-				objects[xx].rotation.x += Math.random() / 100;
-				objects[xx].rotation.y += Math.random() / 100;
-				objects[xx].rotation.z += Math.random() / 100;
+				objects[xx].rotation.x += objects[xx].custom.spin.x;
+				objects[xx].rotation.y += objects[xx].custom.spin.y;
+				objects[xx].rotation.z += objects[xx].custom.spin.z;
 
-				objects[xx].position.x += Math.random() / 100;
-				objects[xx].position.y += Math.random() / 100;
-				objects[xx].position.z += Math.random() / 100;
+			} else {
+				objects[xx].rotation.x -= objects[xx].custom.spin.x;
+				objects[xx].rotation.y -= objects[xx].custom.spin.y;
+				objects[xx].rotation.z -= objects[xx].custom.spin.z;
 
 				if(spaceDown){
-					objects[xx].material.opacity = 0.8;
+					objects[xx].material.color.setHex(objects[xx].custom.color)
 				} else {
-					objects[xx].material.opacity = 0.2;
+					objects[xx].material.color.setHex(0x000000);
 				}
-			} else {
-				objects[xx].rotation.x -= Math.random() / 100;
-				objects[xx].rotation.y -= Math.random() / 100;
-				objects[xx].rotation.z -= Math.random() / 100;
 
-				objects[xx].position.x -= Math.random() / 100;
-				objects[xx].position.y -= Math.random() / 100;
-				objects[xx].position.z -= Math.random() / 100;
 			}
 
 			xx += 1;
@@ -63,18 +85,21 @@ var __bwMeet13 = (function(){
 		for(var x = 0; x < Max; x += 1){
 
 			var nObj = shapes.cube(5 ,5, 5, 0xFF00FF);
+				nObj.custom = {};
 				nObj.position.set(x - Math.random() * Max, x - Math.random() * Max, x - Math.random() * Max);
 
 				if(x < Max / 3){
-					nObj.material.color.setHex(0xFF0000);	
+					nObj.custom.color = 0xFF0000;
 				} else if(x > Max / 3 && x < (Max / 3) * 2){
-					nObj.material.color.setHex(0x0000FF);
+					nObj.custom.color = 0x0000FF;
 				} else {
-					nObj.material.color.setHex(0xFFFF00);
+					nObj.custom.color = 0xFFFF00;
 				}
 
+			nObj.material.color.setHex(0x000000);
+
 			nObj.material.needsUpdate = true;
-			nObj.material.opacity = 0.2;
+			nObj.custom.spin = {x : Math.random() / 500, y : Math.random() / 500, z : Math.random() / 500}
 
 			objects.push(nObj);
 				
@@ -83,6 +108,38 @@ var __bwMeet13 = (function(){
 		}
 
 		drawScene();
+
+	}
+
+	function addEvents(){
+
+		frame.addEventListener('dragover', function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			console.log("Drag");
+		}, true);
+
+		frame.addEventListener('drop', function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			console.log(e);
+			loadFile(e);
+		}, true);
+
+		document.addEventListener('keydown', function(e){
+			if(e.keyCode == 32){
+				e.preventDefault();
+				spaceDown = true;
+			}
+		}, false);
+
+		document.addEventListener('keyup', function(e){
+			if(e.keyCode == 32){
+				e.preventDefault();
+				spaceDown = false;
+			}
+		}, false);
+	
 
 	}
 
@@ -104,21 +161,9 @@ var __bwMeet13 = (function(){
 
 		frame.appendChild(WebGL.renderer.domElement);
 
+		addEvents();
+
 		buildScene();
-
-		document.addEventListener('keydown', function(e){
-			e.preventDefault();
-			if(e.keyCode == 32){
-				spaceDown = true;
-			}
-		}, false);
-
-		document.addEventListener('keyup', function(e){
-			e.preventDefault();
-			if(e.keyCode == 32){
-				spaceDown = false;
-			}
-		}, false);
 
 	}
 
@@ -131,3 +176,14 @@ var __bwMeet13 = (function(){
 (function(){
 	__bwMeet13.init();
 })();
+
+function sections(number){
+
+	/*var range = 88,
+		sections = 88,
+		setSize = range / sections,
+		answer = Math.ceil(number / setSize);*/
+	
+	return answer;	
+
+}
