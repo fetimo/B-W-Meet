@@ -15,4 +15,7 @@ bwmeet.esproj/user.Sean.espressostorage
 
 *.espressostorage
 
+sftp-config.json
+
 Resources/
+

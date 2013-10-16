@@ -11,7 +11,15 @@ var __bwMeet13 = (function(){
 	},
 	frame = document.getElementById('frame'),
 	objects = [],
-	spaceDown = false;
+	spaceDown = false,
+	audio = {
+		context : undefined,
+		source : undefined,
+		analyser : undefined,
+		sourceNode : undefined
+	};
+
+
 
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame; 
 		window.requestAnimationFrame = requestAnimationFrame;
@@ -22,12 +30,26 @@ var __bwMeet13 = (function(){
 		var blob = new Blob([buff], {type: 'audio/mpeg'});
 
 		var aud = new Audio();
+		aud.setAttribute('type', 'audio/mpeg');
 		aud.src = URL.createObjectURL(blob);
 		aud.load();
 		document.body.appendChild(aud);
 
 		aud.addEventListener('canplaythrough', function(){
-			aud.play();
+			
+			audio.context = new AudioContext() || new webkitAudioContext();
+			audio.analyser = audio.context.createAnalyser();
+			audio.sourceNode = audio.context.createMediaElementSource(aud);
+			audio.sourceNode.connect(audio.analyser);
+			audio.sourceNode.connect(audio.context.destination);
+
+			
+			(function(){
+				setTimeout(function(){
+					aud.play();
+				}, 1000);
+			})();
+
 			document.getElementById('tint').setAttribute('class', 'fadeOut');
 		}, true);
 
@@ -90,6 +112,32 @@ var __bwMeet13 = (function(){
 
 		}
 
+		if(audio.analyser !== undefined && audio.analyser.frequencyBinCount !== undefined){
+
+			var arr = new Uint8Array(audio.analyser.frequencyBinCount);
+				audio.analyser.getByteFrequencyData(arr);
+				
+			var xw = 0;
+
+			while(xw < arr.length){
+
+				//var cube = objects[Math.floor((Math.floor((88 / arr.length) * 100) / 88) * 100)];
+
+				Math.round((1024 / 1024) * 100) / 100 * 88
+
+				var cube = objects[Math.floor((((xw / arr.length) * 100) / 100) * 88)];
+
+				// if(cube !== undefined){
+					cube.scale.x = cube.scale.y = cube.scale.z = arr[xw] / 100;
+					cube.material.color.setHex(cube.custom.color);
+				// }
+
+				xw += 1;
+
+			}
+
+		}
+
 		WebGL.renderer.render(WebGL.scene, WebGL.camera);
 
 		requestAnimationFrame(drawScene);
@@ -108,10 +156,13 @@ var __bwMeet13 = (function(){
 
 				if(x < Max / 3){
 					nObj.custom.color = 0xFF0000;
+					// nObj.custom.color = 0x6092b6;
 				} else if(x > Max / 3 && x < (Max / 3) * 2){
 					nObj.custom.color = 0x0000FF;
+					// nObj.custom.color = 0xeb835f
 				} else {
 					nObj.custom.color = 0xFFFF00;
+					// nObj.custom.color = 0x000000;
 				}
 
 			nObj.material.color.setHex(0x000000);
@@ -125,6 +176,8 @@ var __bwMeet13 = (function(){
 			WebGL.scene.add(objects[x]);
 
 		}
+
+
 
 		drawScene();
 
@@ -163,6 +216,10 @@ var __bwMeet13 = (function(){
 	}
 
 	function init(){
+
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+		console.log(audio.context);
 		
 		WebGL.camera = new THREE.PerspectiveCamera(75, frame.offsetWidth / frame.offsetHeight, 1, 500);
 		WebGL.camera.position.z = 100;
