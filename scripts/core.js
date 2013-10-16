@@ -17,7 +17,8 @@ var __bwMeet13 = (function(){
 		source : undefined,
 		analyser : undefined,
 		sourceNode : undefined
-	};
+	},
+	cubeLimiter = 88;
 
 
 
@@ -25,6 +26,12 @@ var __bwMeet13 = (function(){
 		window.requestAnimationFrame = requestAnimationFrame;
 
 	function handleAudio(data){
+
+		var otherAuds = document.getElementsByTagName('audio');
+
+		for(var aj = 0; aj < otherAuds.length; aj += 1){
+			otherAuds[aj].parentElement.removeChild(otherAuds[aj]);
+		}
 
 		var buff = new Uint8Array(data.target.result);
 		var blob = new Blob([buff], {type: 'audio/mpeg'});
@@ -43,6 +50,7 @@ var __bwMeet13 = (function(){
 			audio.sourceNode.connect(audio.analyser);
 			audio.sourceNode.connect(audio.context.destination);
 
+			console.log(aud);
 			
 			(function(){
 				setTimeout(function(){
@@ -53,6 +61,11 @@ var __bwMeet13 = (function(){
 			document.getElementById('tint').setAttribute('class', 'fadeOut');
 		}, true);
 
+
+		aud.addEventListener('ended', function(){
+			aud.parentElement.removeChild(aud);
+			document.getElementById('tint').setAttribute('class', 'fadeIn');
+		})
 
 	}
 
@@ -91,21 +104,6 @@ var __bwMeet13 = (function(){
 
 			}
 
-			if(objects[xx].material.color.r > 0){
-				objects[xx].material.color.r -= 0.1;
-			}
-
-			if(objects[xx].material.color.g > 0){
-				objects[xx].material.color.g -= 0.1;
-			}
-
-			if(objects[xx].material.color.b > 0){
-				objects[xx].material.color.b -= 0.1;
-			}
-
-			if(objects[xx].scale.x > 1){
-				objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z -= 0.1;
-			}
 			// objects[xx].scale.x = objects[xx].scale.y = objects[xx].scale.z = Math.random() * 2;
 
 			xx += 1;
@@ -125,11 +123,30 @@ var __bwMeet13 = (function(){
 
 				Math.round((1024 / 1024) * 100) / 100 * 88
 
-				var cube = objects[Math.floor((((xw / arr.length) * 100) / 100) * 88)];
+				var cube = objects[Math.floor((((xw / arr.length) * 100) / 100) * cubeLimiter)];
 
 				// if(cube !== undefined){
-					cube.scale.x = cube.scale.y = cube.scale.z = arr[xw] / 100;
-					cube.material.color.setHex(cube.custom.color);
+					cube.scale.x = cube.scale.y = cube.scale.z = 1 + (arr[xw] / 100);
+					
+					if(cube.scale.x > 1){
+						cube.material.color.setHex(cube.custom.color);
+					}
+
+					if(cube.material.color.r > 0){
+						cube.material.color.r -= 0.1;
+					}
+
+					if(cube.material.color.g > 0){
+						cube.material.color.g -= 0.1;
+					}
+
+					if(cube.material.color.b > 0){
+						cube.material.color.b -= 0.1;
+					}
+
+					if(cube.scale.x > 1){
+						cube.scale.x = cube.scale.y = cube.scale.z -= 0.1;
+					}
 				// }
 
 				xw += 1;
@@ -146,7 +163,7 @@ var __bwMeet13 = (function(){
 
 	function buildScene(){
 
-		var Max = 88;
+		var Max = cubeLimiter;
 
 		for(var x = 0; x < Max; x += 1){
 
@@ -154,15 +171,12 @@ var __bwMeet13 = (function(){
 				nObj.custom = {};
 				nObj.position.set(x - Math.random() * Max, x - Math.random() * Max, x - Math.random() * Max);
 
-				if(x < Max / 3){
+				if(x % 3 === 0){
 					nObj.custom.color = 0xFF0000;
-					// nObj.custom.color = 0x6092b6;
-				} else if(x > Max / 3 && x < (Max / 3) * 2){
+				} else if(x % 3 === 1){
 					nObj.custom.color = 0x0000FF;
-					// nObj.custom.color = 0xeb835f
 				} else {
 					nObj.custom.color = 0xFFFF00;
-					// nObj.custom.color = 0x000000;
 				}
 
 			nObj.material.color.setHex(0x000000);
@@ -176,8 +190,6 @@ var __bwMeet13 = (function(){
 			WebGL.scene.add(objects[x]);
 
 		}
-
-
 
 		drawScene();
 

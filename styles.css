@@ -114,7 +114,7 @@ main #poster #frame #content footer #info h1, main #poster #frame #content foote
 	padding: 0;
 	font-size: 45px;
 	font-weight: 100;
-	color: rgba(0,0,0,.5);
+	color: #808080;
 }
 
 main #poster #frame #content footer #hashtag{
@@ -126,6 +126,7 @@ main #poster #frame #content footer #hashtag{
 
 main #poster #frame #content footer #hashtag a{
 	color: rgba(0, 0, 0, .5);
+	color: #808080;
 }
 
 main #information{
