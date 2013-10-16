@@ -18,8 +18,8 @@ body{
 	height:auto;
 }
 
-.hidden{
-	opacity: 0;
+.hide{
+	display: none;	
 }
 
 main{
@@ -27,6 +27,10 @@ main{
 	height: auto;
 	background-color: rgb(245, 245, 245);
 	padding-top: 40px;
+}
+
+main audio{
+	display: none;
 }
 
 main #poster{
@@ -44,78 +48,14 @@ main #poster #frame{
 	width: 100%;
 	height: 100%;
 }
-
-.day{
-	background-color: rgb(120, 182, 227);
-}
-
-.dusk{
-	background-color: rgb(95, 81, 179);
-}
-
-.night{
-	background-color: rgb(9, 49, 117);
-}
-
-.dawn{
-	background-color: rgb(235, 197, 94);
-}
-
-main #poster #frame #back{
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	top:0;
-	left: 0;
-}
-
-main #poster #frame #back #clouds, main #poster #frame #back #stars, main #poster #frame #back #grades{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
-
-main #poster #frame #back #stars{
-	background-image: url('assets/images/stars.png');
-}
-
-main #poster #frame #back #grades span{
-	float: left;
-	width: 100%;
-	height: 17%;
-}
-
-main #poster #frame #back #grades span:nth-child(1){
-	background-color: rgba(0,0,0,0) !important;	
-}
-
-main #poster #frame #back #grades span:nth-child(2){
-	background-color: rgba(0,0,0,.04) !important;	
-}
-
-main #poster #frame #back #grades span:nth-child(3){
-	background-color: rgba(0,0,0,.08) !important;	
-}
-
-main #poster #frame #back #grades span:nth-child(4){
-	background-color: rgba(0,0,0,.12) !important;	
-}
-
-main #poster #frame #back #grades span:nth-child(5){
-	background-color: rgba(0,0,0,.16) !important;	
-}
-
-main #poster #frame #back #grades span:nth-child(6){
-	background-color: rgba(0,0,0,.2) !important;	
-}
-
 main #poster #frame #content{
 	width: 1000px;
 	height: 1410px;
 	position: absolute;
 	top: 20px;
 	left: 20px;
+	border: 1px solid rgba(0,0,0,.2);
+	z-index: 1000;
 }
 
 main #poster #frame #content header{
@@ -127,21 +67,31 @@ main #poster #frame #content header #logo{
 	margin-right: 20px;
 }
 
-main #poster #frame #content header #balloon{
-	background-image: url('assets/images/balloon.png');
-	background-repeat: no-repeat;
-	margin-left: 50px;
-	width: 330px;
-
-	animation: breezeAnimation 20s infinite;
-	-moz-animation: breezeAnimation 20s infinite; /* Firefox */
-	-webkit-animation: breezeAnimation 20s infinite; /* Safari and Chrome */
-	-o-animation: breezeAnimation 20s infinite; /* Opera */
-
+main #poster #frame #tint{
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 500;
 }
 
-main #poster #frame #content header #balloon img{
-	opacity: 0;
+main #poster #frame #tint #haveYouThought{
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	text-align: center;
+	color: white;
+	background-color: rgba(255,255,255,.1);
+	padding: 25px 15px 10px;
+	border-radius: 5px;
+	margin-left: -134px;
+	font-weight: 200;
+}
+
+
+main #poster #frame #WebGL{
+    position: absolute;
+    top: 20px;
 }
 
 main #poster #frame #content footer{
@@ -162,9 +112,9 @@ main #poster #frame #content footer #info{
 main #poster #frame #content footer #info h1, main #poster #frame #content footer #hashtag a{
 	margin: 0;
 	padding: 0;
-	color: white;
 	font-size: 45px;
 	font-weight: 100;
+	color: #808080;
 }
 
 main #poster #frame #content footer #hashtag{
@@ -175,7 +125,8 @@ main #poster #frame #content footer #hashtag{
 }
 
 main #poster #frame #content footer #hashtag a{
-	color: rgba(255, 255, 255, .5);
+	color: rgba(0, 0, 0, .5);
+	color: #808080;
 }
 
 main #information{
@@ -249,4 +200,19 @@ main #information article p a{
 main #ticket{
 	text-align: center;
 	padding-bottom: 50px;
+}
+
+.fadeOut{
+	opacity: 0;
+	animation: fadeOutAnimation 1s;
+	-moz-animation: fadeOutAnimation 1s; /* Firefox */
+	-webkit-animation: fadeOutAnimation 1s; /* Safari and Chrome */
+	-o-animation: fadeOutAnimation 1s; /* Opera */
+}
+
+.fadeIn{
+	animation: fadeInAnimation 1s;
+	-moz-animation: fadeInAnimation 1s; /* Firefox */
+	-webkit-animation: fadeInAnimation 1s; /* Safari and Chrome */
+	-o-animation: fadeInAnimation 1s; /* Opera */
 }
