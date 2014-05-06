@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
-html{
+html {
 	height:100%;
 	width:100%;
 	background-color:#ffffff;
@@ -8,9 +8,9 @@ html{
 	background-size:100%;
 }
 
-body{
+body {
 	font-family: 'Roboto', sans-serif;
-	font-size:12pt;
+	font-size:12px;
 	margin:0px;
 	background-attachment: scroll;
 	background-repeat: repeat-y;
@@ -18,24 +18,24 @@ body{
 	height:auto;
 }
 
-.hide{
+.hide {
 	display: none;	
 }
 
-main{
+main {
 	width: 100%;
 	height: auto;
 	background-color: rgb(245, 245, 245);
 	padding-top: 40px;
 }
 
-main audio{
+audio {
 	display: none;
 }
 
-main #poster{
+#poster {
 	width: 1000px;
-	height: 1410px;
+	height: 1110px;
 	background-color: white;
 	position: relative;
 	margin-left: auto;
@@ -44,13 +44,13 @@ main #poster{
 	padding: 20px;
 }
 
-main #poster #frame{
+#frame {
 	width: 100%;
 	height: 100%;
 }
-main #poster #frame #content{
+#content {
 	width: 1000px;
-	height: 1410px;
+	height: 1110px;
 	position: absolute;
 	top: 20px;
 	left: 20px;
@@ -58,50 +58,49 @@ main #poster #frame #content{
 	z-index: 1000;
 }
 
-main #poster #frame #content header{
+#content header {
 	padding-top: 20px;
 }
 
-main #poster #frame #content header #logo{
+#logo {
 	float: right;
 	margin-right: 20px;
 }
 
-main #poster #frame #tint{
-	background-color: rgba(0, 0, 0, 0.7);
+#tint {
+	/*background-color: rgba(0, 0, 0, 0.7);*/
 	width: 100%;
 	height: 100%;
 	position: relative;
 	z-index: 500;
 }
 
-main #poster #frame #tint #haveYouThought{
+#haveYouThought {
 	position: absolute;
 	left: 50%;
-	top: 30%;
+	top: 20%;
 	text-align: center;
 	color: white;
 	background-color: rgba(255,255,255,.1);
 	padding: 25px 15px 10px;
 	border-radius: 5px;
-	margin-left: -134px;
+	margin-left: -250px;
 	font-weight: 200;
 }
 
-
-main #poster #frame #WebGL{
+#WebGL {
     position: absolute;
     top: 20px;
 }
 
-main #poster #frame #content footer{
+#content footer {
 	width: 100%;
 	height: auto;
 	position: absolute;
 	bottom: 0;
 }
 
-main #poster #frame #content footer #info{
+#info {
 	float: left;
 	width: 500px;
 	position: absolute;
@@ -109,7 +108,8 @@ main #poster #frame #content footer #info{
 	left: 20px;
 }
 
-main #poster #frame #content footer #info h1, main #poster #frame #content footer #hashtag a{
+#info h2,
+#hashtag a {
 	margin: 0;
 	padding: 0;
 	font-size: 45px;
@@ -117,19 +117,19 @@ main #poster #frame #content footer #info h1, main #poster #frame #content foote
 	color: #808080;
 }
 
-main #poster #frame #content footer #hashtag{
+#hashtag {
     float: right;
 	position: absolute;
 	right: 20px;
 	bottom: 20px;
 }
 
-main #poster #frame #content footer #hashtag a{
-	color: rgba(0, 0, 0, .5);
+#hashtag a {
 	color: #808080;
+	color: rgba(0, 0, 0, .5);
 }
 
-main #information{
+#information {
 	width: 1000px;
 	position: relative;
 	margin-left: auto;
@@ -138,7 +138,7 @@ main #information{
 	padding-bottom: 30px;
 }
 
-main #information nav{
+#information nav {
 	width: 900px;
 	margin-left: auto;
 	margin-right: auto;
@@ -147,72 +147,73 @@ main #information nav{
 	margin-bottom: 20px;
 }
 
-main #information nav ul, main #information nav ul li{
+#information nav ul,
+#information nav ul li {
 	margin:0;
 	padding: 0;
 	list-style-type: none;
 	text-align: center;
 }
 
-main #information nav ul{
+#information nav ul {
 	width: 100%;
 }
 
-main #information nav ul li{
+#information nav ul li {
 	width:100px;
 	display: inline;
 	padding: 0 20px;
 	
 }
 
-main #information nav ul li{
+#information nav ul li {
 	color: #9c9c9c;
 	cursor: pointer;
 }
 
-main #information nav ul li.active{
+#information nav ul li.active {
 	color: #636363;
 }
 
-main #information article{
+#information article {
 	display: none;
 	text-align: center;
 }
 
-main #information article.active{
+#information article.active {
 	display: block;
 	width: 100%;
 	height: auto;
 }
 
-main #information article p{
+#information article p {
 	font-size: 14px;
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-main #information article p a{
+#information article p a {
 	text-decoration: none;
 	color: #6092b6;
 }
 
-main #ticket{
+#ticket {
 	text-align: center;
 	padding-bottom: 50px;
 }
 
-.fadeOut{
+.fadeOut {
 	opacity: 0;
-	animation: fadeOutAnimation 1s;
 	-moz-animation: fadeOutAnimation 1s; /* Firefox */
 	-webkit-animation: fadeOutAnimation 1s; /* Safari and Chrome */
 	-o-animation: fadeOutAnimation 1s; /* Opera */
+	animation: fadeOutAnimation 1s;
 }
 
-.fadeIn{
-	animation: fadeInAnimation 1s;
+.fadeIn {
 	-moz-animation: fadeInAnimation 1s; /* Firefox */
 	-webkit-animation: fadeInAnimation 1s; /* Safari and Chrome */
 	-o-animation: fadeInAnimation 1s; /* Opera */
+	animation: fadeInAnimation 1s;
 }

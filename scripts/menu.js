@@ -5,25 +5,23 @@
 		articles = document.getElementById('information').getElementsByTagName('article'),
 		prod = 'ontouchend' in window ? 'touchend' : 'click';
 
-	var z = 0
+	var z = 0;
 
-	while(z < menuOptions.length){
+	while (z < menuOptions.length) {
 
-		(function(z){
-			menuOptions[z].addEventListener(prod, function(){
+		(function(z) {
+			menuOptions[z].addEventListener(prod, function() {
 
 				for (var za = 0, len = menuOptions.length; za < len; za += 1){
-					menuOptions[za].setAttribute('class', '');
-					articles[za].setAttribute('class', '');
+					menuOptions[za].classList.remove('active');
+					articles[za].classList.remove('active');
 				}
 
-				menuOptions[z].setAttribute('class', 'active');
-				articles[z].setAttribute('class', 'active');
+				menuOptions[z].classList.add('active');
+				articles[z].classList.add('active');
 			}, false);
 		})(z);
 
 		z += 1;
-
 	}
-
 })();
